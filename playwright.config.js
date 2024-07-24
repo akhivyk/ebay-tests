@@ -27,7 +27,7 @@ export default defineConfig({
     [
       '@zebrunner/javascript-agent-playwright',
       {
-        enabled: true,
+        enabled: false,
         launch: {
           displayName: 'Regression from config'
         },
