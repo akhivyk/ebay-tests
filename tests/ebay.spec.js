@@ -3,6 +3,8 @@ const { EbayHomePage } = require('../pages/EbayHomePage');
 const { EbaySearchResultsPage } = require('../pages/EbaySearchResultsPage');
 const { EbayProductPage } = require('../pages/ebayProductPage');
 
+import { zebrunner } from '@zebrunner/javascript-agent-playwright';
+
 test.describe('eBay Tests', () => {
 
     test.beforeEach(async ({ page }) => {
@@ -11,6 +13,8 @@ test.describe('eBay Tests', () => {
     });
 
     test('Search for an item', async ({ page }) => {
+        zebrunner.testCaseKey('DEF-1');
+
         const ebayHomePage = new EbayHomePage(page);
         const ebaySearchResultsPage = new EbaySearchResultsPage(page);
 
@@ -24,6 +28,8 @@ test.describe('eBay Tests', () => {
     });
 
     test('Add item to cart', async ({ page, context }) => {
+        zebrunner.testCaseKey('DEF-2');
+
         const ebayHomePage = new EbayHomePage(page);
         const ebaySearchResultsPage = new EbaySearchResultsPage(page);
     
@@ -45,6 +51,8 @@ test.describe('eBay Tests', () => {
     });    
 
     test('Verify Sorting Options', async ({ page }) => {
+        zebrunner.testCaseKey('DEF-3');
+
         const ebayHomePage = new EbayHomePage(page);
         const ebaySearchResultsPage = new EbaySearchResultsPage(page);
 
@@ -61,6 +69,8 @@ test.describe('eBay Tests', () => {
     });
 
     test('Check Pagination Functionality', async ({ page }) => {
+        zebrunner.testCaseKey('DEF-4');
+
         const ebayHomePage = new EbayHomePage(page);
         const ebaySearchResultsPage = new EbaySearchResultsPage(page);
 
@@ -75,6 +85,8 @@ test.describe('eBay Tests', () => {
     });
 
     test('Verify Item Details', async ({ page, context }) => {
+        zebrunner.testCaseKey('DEF-5');
+
         const ebayHomePage = new EbayHomePage(page);
         const ebaySearchResultsPage = new EbaySearchResultsPage(page);
 
@@ -94,6 +106,8 @@ test.describe('eBay Tests', () => {
     });
 
     test('Check filter persistence after navigating results pages', async ({ page }) => {
+        zebrunner.testCaseKey('DEF-6');
+
         const ebayHomePage = new EbayHomePage(page);
         const ebaySearchResultsPage = new EbaySearchResultsPage(page);
     
@@ -112,6 +126,8 @@ test.describe('eBay Tests', () => {
     });  
 
     test('Verify search with invalid query returns no results', async ({ page }) => {
+        zebrunner.testCaseKey('DEF-7');
+
         const ebayHomePage = new EbayHomePage(page);
         const ebaySearchResultsPage = new EbaySearchResultsPage(page);
 
