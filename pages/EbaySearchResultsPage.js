@@ -19,15 +19,13 @@ class EbaySearchResultsPage {
   }
 
   async clickProductByName(name) {
-    const allProducts = this.searchItem.item;
-
     const regex = new RegExp(name, 'i');
 
-    const currentProduct = await allProducts.filter({ hasText: regex }).first();
-    
-    console.log("name value "+ await currentProduct.locator())
-    
-    await currentProduct.click()
+    const currentProduct = await this.searchItem.itemName
+      .filter({ hasText: regex })
+      .first();
+
+    await currentProduct.click();
   }
 
   async selectSortOption(option) {
