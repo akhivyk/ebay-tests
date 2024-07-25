@@ -6,7 +6,7 @@ class EbayProductPage {
         this.addToCartButton = '//a[@id="atcBtn_btn_1"]';
         this.buyItNowButton = '#binBtn_btn';
         this.productTitle = page.locator('//div[@data-testid="x-item-title"]');
-        this.productPrice = '//div[@class="x-price-primary"]';
+        this.productPrice = page.locator( '//div[@class="x-price-primary"]');
         this.productDescription = '#dItemDesc';
     }
 
@@ -23,7 +23,7 @@ class EbayProductPage {
     }
 
     async getProductPrice() {
-        return await this.page.locator(this.productPrice).textContent();
+        return await this.productPrice.textContent();
     }
 
     async getProductDescription() {

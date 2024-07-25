@@ -1,10 +1,10 @@
 class EbayHomePage {
     constructor(page) {
         this.page = page;
-        this.searchInput = '#gh-ac';
-        this.searchButton = '#gh-btn';
-        this.signInLink = 'a[title="Sign in"]';
-        this.accountLink = '#gh-ug a';
+        this.searchInput = page.locator('#gh-ac');
+        this.searchButton = page.locator('#gh-btn');
+        this.signInLink = page.locator('a[title="Sign in"]');
+        this.accountLink = page.locator('#gh-ug a');
     }
 
     async navigate() {
@@ -12,16 +12,16 @@ class EbayHomePage {
     }
 
     async searchForItem(item) {
-        await this.page.fill(this.searchInput, item);
-        await this.page.click(this.searchButton);
+        await this.searchInput.fill( item);
+        await this.searchButton.click();
     }
 
     async clickSignIn() {
-        await this.page.click(this.signInLink);
+        await this.signInLink.click();
     }
 
     async goToAccount() {
-        await this.page.click(this.accountLink);
+        await this.accountLink.click();
     }
 
     async checkIfItemExists(item) {
