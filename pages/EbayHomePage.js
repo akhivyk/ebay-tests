@@ -12,7 +12,7 @@ class EbayHomePage {
     }
 
     async searchForItem(item) {
-        await this.searchInput.fill( item);
+        await this.searchInput.fill(item);
         await this.searchButton.click();
     }
 

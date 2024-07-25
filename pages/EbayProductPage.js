@@ -3,23 +3,23 @@ const { expect } = require("@playwright/test");
 class EbayProductPage {
     constructor(page) {
         this.page = page;
-        this.addToCartButton = '//a[@id="atcBtn_btn_1"]';
-        this.buyItNowButton = '#binBtn_btn';
+        this.addToCartButton = page.locator('//a[@id="atcBtn_btn_1"]');
+        this.buyItNowButton = page.locator('#binBtn_btn');
         this.productTitle = page.locator('//div[@data-testid="x-item-title"]');
         this.productPrice = page.locator( '//div[@class="x-price-primary"]');
-        this.productDescription = '#dItemDesc';
+        this.productDescription = page.locator('#dItemDesc');
     }
 
     async addToCart() {
-        await this.page.click(this.addToCartButton);
+        await this.addToCartButton.click();
     }
 
     async buyItNow() {
-        await this.page.click(this.buyItNowButton);
+        await this.buyItNowButton.click();
     }
 
     async getProductTitle() {
-        return await this.page.locator(this.productTitle).textContent();
+        return await this.productTitle.textContent();
     }
 
     async getProductPrice() {
@@ -27,7 +27,7 @@ class EbayProductPage {
     }
 
     async getProductDescription() {
-        return await this.page.locator(this.productDescription).textContent();
+        return await this.productDescription.textContent();
     }
 }
 

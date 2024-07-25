@@ -3,17 +3,17 @@ const { SearchItem } = require('../components/SearchItem');
 class EbaySearchResultsPage {
   constructor(page) {
     this.page = page;
-    this.firstProductLink = '//a[@class="s-item__link" and not(@tabindex)]';
-    this.sortByDropdown = '//button[contains(@aria-label, "Sort selector")]';
+    this.firstProductLink = page.locator('//a[@class="s-item__link" and not(@tabindex)]');
+    this.sortByDropdown = page.locator('//button[contains(@aria-label, "Sort selector")]');
     this.currentSelectedSortOption =
-      '//button[contains(@aria-label, "Sort selector")]//span[@class="btn__cell"]';
-    this.paginationNextButton = '.pagination__next';
-    this.noResultsFoundLabel = '//div[@class="srp-save-null-search"]';
+      page.locator('//button[contains(@aria-label, "Sort selector")]//span[@class="btn__cell"]');
+    this.paginationNextButton = page.locator('.pagination__next');
+    this.noResultsFoundLabel = page.locator('//div[@class="srp-save-null-search"]');
     this.searchItem = new SearchItem(page);
   }
 
   async clickFirstProduct() {
-    const firstProduct = this.page.locator(this.firstProductLink).first();
+    const firstProduct = this.firstProductLink.first();
     await firstProduct.scrollIntoViewIfNeeded();
     await firstProduct.click();
   }
@@ -29,14 +29,14 @@ class EbaySearchResultsPage {
   }
 
   async selectSortOption(option) {
-    await this.page.click(this.sortByDropdown);
+    await this.sortByDropdown.click();
     const optionLocator = this.page.locator(`text=${option}`);
     await optionLocator.waitFor();
     await optionLocator.click();
   }
 
   async clickNextPage() {
-    await this.page.click(this.paginationNextButton);
+    await this.paginationNextButton.click();
   }
 
   async getItems() {
@@ -44,14 +44,12 @@ class EbaySearchResultsPage {
   }
 
   async getCurrentFilter() {
-    const filterLocator = this.page.locator(this.currentSelectedSortOption);
-    return await filterLocator.textContent();
+    return await this.currentSelectedSortOption.textContent();
   }
 
   async isNoResultsFoundVisible() {
-    const noResultsFoundLocator = this.page.locator(this.noResultsFoundLabel);
-    await noResultsFoundLocator.waitFor({ state: 'visible', timeout: 5000 });
-    return await noResultsFoundLocator.isVisible();
+    await this.noResultsFoundLabel.waitFor({ state: 'visible', timeout: 5000 });
+    return await this.noResultsFoundLabel.isVisible();
   }
 }
 
